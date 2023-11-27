@@ -36,7 +36,7 @@
   tasks:
     - name: Create a security group
       amazon.aws.ec2_group: ec2_group
-        name: "{{ security_group }}"
+  name: "{{ security_group }}"
         description: Security Group for webserver Servers
         region: "{{ region }}"
         rules:
