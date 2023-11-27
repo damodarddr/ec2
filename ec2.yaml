@@ -1,8 +1,5 @@
 ---
 - name: Provisioning a new EC2 instance and security group
-  hosts: all
-  connection: localhost
-  gather_facts: True
   tags: provisioning
 
   pre_tasks:
