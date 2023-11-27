@@ -2,7 +2,7 @@
 - name: Provisioning a new EC2 instance and security group
   hosts: all
   connection: local
-  gather_facts: False
+  gather_facts: True
   tags: provisioning
 
   pre_tasks:
@@ -21,16 +21,16 @@
 
   vars:
     ansible_python_interpreter: /usr/bin/python3.10
-    keypair: Mumbai
+    keypair: reddy
     instance_type: t2.micro
-    image_id: ami-0f5ee92e2d63afc18
+    image_id: ami-0361bbf2b99f46c1d
     wait: yes
     group: webserver
     count: 1
-    region: ap-south-1
-    security_group: ec2-security-group
+    region: ap-southeast-2
+    security_group: default
     tag_name:
-      Name: Aj-ec2   
+      Name: DDR-ec2   
 
   tasks:
     - name: Create a security group
@@ -82,3 +82,4 @@
           sudo systemctl enable docker
           sudo docker run -d --name 2048 -p 3000:3000 sevenajay/2048:latest
       register: ec2
+
