@@ -6,7 +6,6 @@
   tags: provisioning
 
   pre_tasks:
-
     - name: Gather facts
       setup:
 
@@ -17,8 +16,8 @@
     - name: Install dependencies
       shell: "/usr/bin/python3.10 -m pip install {{ item }}"
       loop:
-       - boto3
-       - botocore
+        - boto3
+        - botocore
 
   vars:
     ansible_python_interpreter: /usr/bin/python3.10
@@ -31,12 +30,12 @@
     region: ap-south-1
     security_group: ec2-security-group
     tag_name:
-      Name: Aj-ec2   
+      Name: Aj-ec2
 
   tasks:
     - name: Create a security group
-      amazon.aws.ec2_group: ec2_group
-  name: "{{ security_group }}"
+      amazon.aws.ec2_group:
+        name: "{{ security_group }}"
         description: Security Group for webserver Servers
         region: "{{ region }}"
         rules:
@@ -51,7 +50,7 @@
           - proto: tcp
             from_port: 3000
             to_port: 3000
-            cidr_ip: 0.0.0.0/0  
+            cidr_ip: 0.0.0.0/0
           - proto: tcp
             from_port: 80
             to_port: 80
@@ -62,11 +61,11 @@
             cidr_ip: 0.0.0.0/0
         rules_egress:
           - proto: all
-            cidr_ip: 0.0.0.0/0   
+            cidr_ip: 0.0.0.0/0
       register: basic_firewall
 
     - name: Launch the new EC2 Instance
-      amazon.aws.ec2_instance: ec2_group
+      amazon.aws.ec2_instance:
         security_group: "{{ security_group }}"
         instance_type: "{{ instance_type }}"
         image_id: "{{ image_id }}"
