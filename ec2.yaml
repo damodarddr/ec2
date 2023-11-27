@@ -30,7 +30,7 @@
     region: ap-south-1
     security_group: ec2-security-group
     tag_name:
-      Name: Aj-ec2
+      Name: Aj-ec2   
 
   tasks:
     - name: Create a security group
@@ -50,7 +50,7 @@
           - proto: tcp
             from_port: 3000
             to_port: 3000
-            cidr_ip: 0.0.0.0/0
+            cidr_ip: 0.0.0.0/0  
           - proto: tcp
             from_port: 80
             to_port: 80
@@ -61,7 +61,7 @@
             cidr_ip: 0.0.0.0/0
         rules_egress:
           - proto: all
-            cidr_ip: 0.0.0.0/0
+            cidr_ip: 0.0.0.0/0   
       register: basic_firewall
 
     - name: Launch the new EC2 Instance
