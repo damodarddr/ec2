@@ -35,7 +35,7 @@
 
   tasks:
     - name: Create a security group
-      amazon.aws.ec2_group:
+      amazon.aws.ec2_group: ec2_group
         name: "{{ security_group }}"
         description: Security Group for webserver Servers
         region: "{{ region }}"
@@ -66,7 +66,7 @@
       register: basic_firewall
 
     - name: Launch the new EC2 Instance
-      amazon.aws.ec2_instance:
+      amazon.aws.ec2_instance: ec2_group
         security_group: "{{ security_group }}"
         instance_type: "{{ instance_type }}"
         image_id: "{{ image_id }}"
